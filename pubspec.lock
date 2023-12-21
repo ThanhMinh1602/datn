@@ -443,6 +443,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   shelf:
     dependency: transitive
     description:
@@ -464,6 +472,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slide_digital_clock:
+    dependency: "direct main"
+    description:
+      name: slide_digital_clock
+      sha256: c2d3f9d65c0e39a98a5883ccb97912f2f2f28d7f844de86cbe7a8b120815da3c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   source_span:
     dependency: transitive
     description:
@@ -472,6 +488,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  speedometer:
+    dependency: "direct main"
+    description:
+      name: speedometer
+      sha256: "1a62e7da00d2b6100fc5419186d8de075ee6ca6fe810002bfa238e1d66e23ee7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   stack_trace:
     dependency: transitive
     description:

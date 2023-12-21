@@ -1,6 +1,8 @@
+import 'package:datn/screens/home/widgets/engine_speed.dart';
 import 'package:datn/screens/home/widgets/fuel.dart';
 import 'package:datn/screens/home/widgets/speed.dart';
 import 'package:datn/screens/home/widgets/temp.dart';
+import 'package:datn/screens/home/widgets/odo.dart';
 import 'package:flutter/widgets.dart';
 
 class AppModel {
@@ -20,9 +22,9 @@ List<AppModel> listAppModel = [
     ..title = 'engine temperature'
     ..items = const GaugeTemp(),
   AppModel()
-    ..title = 'distance'
-    ..items = const GaugeTemp(),
-  AppModel()
     ..title = 'engine speed'
-    ..items = const GaugeTemp(),
+    ..items = const EngineSpeed(),
+  AppModel()
+    ..title = 'odo'
+    ..items = const OdoWidget(),
 ];

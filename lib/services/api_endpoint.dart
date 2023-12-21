@@ -7,4 +7,5 @@ class ApiEndPoint {
   static const engfuelEndPoint = 'eng_fuel/eng_fuel.json';
   static const tempEngEndPoint = 'temp_eng/temp_eng.json';
   static const vehicleSpeedEndPoint = 'vehicle_speed/vehicle_speed.json';
+  static const engineSpeedEndPoint = 'eng_speed/eng_speed.json';
 }

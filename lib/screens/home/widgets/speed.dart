@@ -40,7 +40,7 @@ class _GaugeSpeedState extends State<GaugeSpeed> {
   @override
   Widget build(BuildContext context) {
     return SfRadialGauge(
-      axes: <RadialAxis>[
+      axes: [
         RadialAxis(
             startAngle: 270,
             endAngle: 270,
@@ -68,7 +68,7 @@ class _GaugeSpeedState extends State<GaugeSpeed> {
         RadialAxis(
           minimum: 0,
           maximum: 200,
-          labelOffset: 15,
+          labelOffset: 12,
           axisLineStyle: const AxisLineStyle(
               thicknessUnit: GaugeSizeUnit.factor, thickness: 0.03),
           majorTickStyle: const MajorTickStyle(
@@ -78,26 +78,26 @@ class _GaugeSpeedState extends State<GaugeSpeed> {
           axisLabelStyle: const GaugeTextStyle(
               color: Color.fromARGB(255, 14, 13, 13),
               fontWeight: FontWeight.bold,
-              fontSize: 14),
+              fontSize: 10),
           interval: 30,
-          ranges: <GaugeRange>[
+          ranges: [
             GaugeRange(
-                startValue: 0,
-                endValue: 200,
-                sizeUnit: GaugeSizeUnit.factor,
-                startWidth: 0.03,
-                endWidth: 0.03,
-                gradient: const SweepGradient(colors: <Color>[
+              startValue: 0,
+              endValue: 200,
+              sizeUnit: GaugeSizeUnit.factor,
+              startWidth: 0.03,
+              endWidth: 0.03,
+              gradient: const SweepGradient(
+                colors: [
                   Color.fromARGB(255, 12, 12, 12),
                   Color.fromARGB(255, 8, 8, 8),
                   Colors.red
-                ], stops: <double>[
-                  0.0,
-                  0.5,
-                  1
-                ]))
+                ],
+                stops: [0.0, 0.5, 1],
+              ),
+            )
           ],
-          pointers: <GaugePointer>[
+          pointers: [
             NeedlePointer(
                 value: _data ?? 0,
                 needleLength: 0.95,
@@ -111,7 +111,7 @@ class _GaugeSpeedState extends State<GaugeSpeed> {
                     sizeUnit: GaugeSizeUnit.factor,
                     color: Color.fromARGB(255, 15, 15, 15)))
           ],
-          annotations: const <GaugeAnnotation>[
+          annotations: const [
             GaugeAnnotation(
                 widget: Column(children: [
                   SizedBox(height: 16.0),

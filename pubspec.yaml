@@ -34,6 +34,8 @@ dependencies:
   flutter_screenutil: ^5.9.0
   http: ^1.1.2
   odometer: ^3.0.0
+  slide_digital_clock: ^1.0.3
+  speedometer: ^1.1.2
   syncfusion_flutter_charts: ^23.2.6
   syncfusion_flutter_gauges: ^23.2.6
 
