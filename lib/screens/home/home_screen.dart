@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }),
                   Container(
                       width: double.infinity,
-                      height: 100.0,
+                      height: 120.0,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(20.0).copyWith(top: 10.0),
                       margin: const EdgeInsets.only(bottom: 20.0),
@@ -107,6 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 15.0, fontWeight: FontWeight.bold),
                             ),
                           ),
+                          const SizedBox(height: 10.0),
                           Expanded(
                               flex: 7,
                               child: listAppModel[4].items ?? Container())

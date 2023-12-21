@@ -13,8 +13,6 @@ class GaugeFuel extends StatefulWidget {
 }
 
 class _GaugeFuelState extends State<GaugeFuel> {
-  late double FuelLvlVal = 0;
-  late bool OverFl = false;
   double? valfllvl;
   Timer? _timer;
 
@@ -121,12 +119,10 @@ class _GaugeFuelState extends State<GaugeFuel> {
                   needleEndWidth: 7,
                   // onValueChanged: _onPointerValueChanged,
                   needleStartWidth: 1,
-                  needleColor:
-                      const Color.fromARGB(255, 12, 12, 12),
+                  needleColor: const Color.fromARGB(255, 12, 12, 12),
                   needleLength: 0.85,
                   knobStyle: const KnobStyle(
-                      color: Color.fromARGB(255, 17, 17, 17),
-                      knobRadius: 0.09))
+                      color: Color.fromARGB(255, 17, 17, 17), knobRadius: 0.09))
             ],
             annotations: <GaugeAnnotation>[
               // GaugeAnnotation(

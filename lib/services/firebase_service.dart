@@ -2,7 +2,7 @@ import 'package:datn/services/api_endpoint.dart';
 import 'package:http/http.dart' as http;
 
 class FirebaseService {
-  Future<double> fetchData({String? endPoint}) async {
+  Future<dynamic> fetchData({String? endPoint}) async {
     try {
       final response = await http.get(
         Uri.parse('${ApiEndPoint.baseUrl}$endPoint'),

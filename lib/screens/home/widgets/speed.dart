@@ -4,14 +4,14 @@ import 'package:datn/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class GaugeSpeed extends StatefulWidget {
-  const GaugeSpeed({super.key});
+class VehicleSpeed extends StatefulWidget {
+  const VehicleSpeed({super.key});
 
   @override
-  State<GaugeSpeed> createState() => _GaugeSpeedState();
+  State<VehicleSpeed> createState() => _VehicleSpeedState();
 }
 
-class _GaugeSpeedState extends State<GaugeSpeed> {
+class _VehicleSpeedState extends State<VehicleSpeed> {
   late bool OverSpd = false;
   double? _data;
   Timer? _timer;

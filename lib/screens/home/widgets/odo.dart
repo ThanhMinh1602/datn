@@ -1,4 +1,10 @@
+import 'dart:async';
+
+import 'package:datn/services/api_endpoint.dart';
+import 'package:datn/services/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:odometer/odometer.dart';
 
 class OdoWidget extends StatefulWidget {
   const OdoWidget({super.key});
@@ -8,10 +14,52 @@ class OdoWidget extends StatefulWidget {
 }
 
 class _OdoWidgetState extends State<OdoWidget> {
+  int? valfllvl = 0;
+  Timer? _timer;
+  String formattedNumber(int? number) {
+    String numberString = (number ?? 0).toString(); // Check for null here
+
+    if (numberString.length < 6) {
+      numberString = numberString.padLeft(6, '0');
+    }
+
+    return numberString;
+  }
+
+  void getFuel() async {
+    const endPoint = ApiEndPoint.distanceEndPoint;
+    valfllvl = await FirebaseService().fetchData(endPoint: endPoint);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
+      getFuel();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(5, (index) => Container()),
+    print('ThanhMinh$valfllvl');
+    return Container(
+      padding:
+          const EdgeInsets.symmetric(horizontal: 20.0).copyWith(right: 10.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.black,
+      ),
+      child: AnimatedSlideOdometerNumber(
+        numberTextStyle: GoogleFonts.tektur(fontSize: 30, color: Colors.white),
+        odometerNumber: OdometerNumber(
+          int.parse(
+            formattedNumber(valfllvl),
+          ),
+        ),
+        duration: const Duration(milliseconds: 1000),
+        letterWidth: 30,
+      ),
     );
   }
 }

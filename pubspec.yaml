@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.0
+  google_fonts: ^6.1.0
   http: ^1.1.2
   odometer: ^3.0.0
   slide_digital_clock: ^1.0.3
