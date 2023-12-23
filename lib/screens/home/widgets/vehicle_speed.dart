@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
+import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -12,14 +13,30 @@ class VehicleSpeed extends StatefulWidget {
 }
 
 class _VehicleSpeedState extends State<VehicleSpeed> {
-  late bool OverSpd = false;
-  double? _data;
+  double vehicleSpeed = 0;
+  double previousVal = 0; // Giá trị trước đó
   Timer? _timer;
-  void getVehicleSpeed() async {
+
+  void getTemp() async {
     const endPoint = ApiEndPoint.vehicleSpeedEndPoint;
-    _data = await FirebaseService().fetchData(endPoint: endPoint);
+    double newValue = await FirebaseService().fetchData(endPoint: endPoint);
+
     if (mounted) {
-      setState(() {});
+      if (newValue != previousVal) {
+        setState(() {
+          vehicleSpeed = newValue;
+          previousVal = newValue;
+          if (vehicleSpeed > 100) {
+            NotificationService.showNotification(
+              id: 5,
+              channelKey: 'channel_1',
+              title: 'vehicle speed'.toUpperCase(),
+              body:
+                  'Vận tốc $vehicleSpeed',
+            );
+          }
+        });
+      }
     }
   }
 
@@ -27,7 +44,7 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      getVehicleSpeed();
+      getTemp();
     });
   }
 
@@ -99,7 +116,7 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
           ],
           pointers: [
             NeedlePointer(
-                value: _data ?? 0,
+                value: vehicleSpeed,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:datn/gen/assets.gen.dart';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
+import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -13,14 +14,30 @@ class GaugeTemp extends StatefulWidget {
 }
 
 class _GaugeTempState extends State<GaugeTemp> {
-  double valengtmp = 0;
+  double engineTemperature = 0;
+  double previousVal = 0; // Giá trị trước đó
   Timer? _timer;
 
   void getTemp() async {
     const endPoint = ApiEndPoint.tempEngEndPoint;
-    valengtmp = await FirebaseService().fetchData(endPoint: endPoint);
+    double newValue = await FirebaseService().fetchData(endPoint: endPoint);
+
     if (mounted) {
-      setState(() {});
+      if (newValue != previousVal) {
+        setState(() {
+          engineTemperature = newValue;
+          previousVal = newValue;
+          if (engineTemperature > 100) {
+            NotificationService.showNotification(
+              id: 3,
+              channelKey: 'channel_1',
+              title: 'engine temperature'.toUpperCase(),
+              body:
+                  'Nhiệt độ $engineTemperature, vượt quá mức cho phép ${engineTemperature - 100}',
+            );
+          }
+        });
+      }
     }
   }
 
@@ -37,6 +54,8 @@ class _GaugeTempState extends State<GaugeTemp> {
     _timer?.cancel();
     super.dispose();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +95,7 @@ class _GaugeTempState extends State<GaugeTemp> {
           ],
           pointers: [
             NeedlePointer(
-                value: valengtmp,
+                value: engineTemperature,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,

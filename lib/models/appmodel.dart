@@ -1,8 +1,8 @@
 import 'package:datn/screens/home/widgets/engine_speed.dart';
-import 'package:datn/screens/home/widgets/fuel.dart';
-import 'package:datn/screens/home/widgets/odo.dart';
-import 'package:datn/screens/home/widgets/speed.dart';
-import 'package:datn/screens/home/widgets/temp.dart';
+import 'package:datn/screens/home/widgets/fuel_level.dart';
+import 'package:datn/screens/home/widgets/distance.dart';
+import 'package:datn/screens/home/widgets/vehicle_speed.dart';
+import 'package:datn/screens/home/widgets/engine_temperature.dart';
 
 import 'package:flutter/widgets.dart';
 

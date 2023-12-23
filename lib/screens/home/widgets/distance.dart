@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
+import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odometer/odometer.dart';
@@ -14,14 +15,30 @@ class OdoWidget extends StatefulWidget {
 }
 
 class _OdoWidgetState extends State<OdoWidget> {
-  int valengtmp = 999999;
+  int distance = 999999;
+  int previousVal = 0; // Giá trị trước đó
   Timer? _timer;
 
   void getTemp() async {
     const endPoint = ApiEndPoint.distanceEndPoint;
-    valengtmp = await FirebaseService().fetchDataInt(endPoint: endPoint);
+    int newValue = await FirebaseService().fetchDataInt(endPoint: endPoint);
+
     if (mounted) {
-      setState(() {});
+      if (newValue != previousVal) {
+        setState(() {
+          distance = newValue;
+          previousVal = newValue;
+          if (distance > 5000) {
+            NotificationService.showNotification(
+              id: 1,
+              channelKey: 'channel_1',
+              title: 'distance'.toUpperCase(),
+              body:
+                  'Số km đã đi $distance',
+            );
+          }
+        });
+      }
     }
   }
 
@@ -51,7 +68,7 @@ class _OdoWidgetState extends State<OdoWidget> {
       child: AnimatedSlideOdometerNumber(
         numberTextStyle: GoogleFonts.tektur(fontSize: 30, color: Colors.white),
         odometerNumber: OdometerNumber(
-          valengtmp,
+          distance,
         ),
         duration: const Duration(milliseconds: 300),
         letterWidth: 30,

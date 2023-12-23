@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
+import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -12,13 +13,30 @@ class EngineSpeed extends StatefulWidget {
 }
 
 class _EngineSpeedState extends State<EngineSpeed> {
-  double _data = 0;
+  double engineSpeed = 0;
+  double previousVal = 0; // Giá trị trước đó
   Timer? _timer;
-  void getVehicleSpeed() async {
+
+  void getTemp() async {
     const endPoint = ApiEndPoint.engineSpeedEndPoint;
-    _data = await FirebaseService().fetchData(endPoint: endPoint);
+    double newValue = await FirebaseService().fetchData(endPoint: endPoint);
+
     if (mounted) {
-      setState(() {});
+      if (newValue != previousVal) {
+        setState(() {
+          engineSpeed = newValue;
+          previousVal = newValue;
+          if (engineSpeed > 100) {
+            NotificationService.showNotification(
+              id: 2,
+              channelKey: 'channel_1',
+              title: 'engine speed'.toUpperCase(),
+              body:
+                  'Tốc độ đông cơ $engineSpeed',
+            );
+          }
+        });
+      }
     }
   }
 
@@ -26,7 +44,7 @@ class _EngineSpeedState extends State<EngineSpeed> {
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      getVehicleSpeed();
+      getTemp();
     });
   }
 
@@ -35,6 +53,8 @@ class _EngineSpeedState extends State<EngineSpeed> {
     _timer?.cancel();
     super.dispose();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +94,7 @@ class _EngineSpeedState extends State<EngineSpeed> {
           ],
           pointers: [
             NeedlePointer(
-                value: _data /100,
+                value: engineSpeed /100,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,

@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:datn/gen/assets.gen.dart';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
+import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -14,14 +14,30 @@ class GaugeFuel extends StatefulWidget {
 }
 
 class _GaugeFuelState extends State<GaugeFuel> {
-  double? valfllvl = 0;
+   double fuelLevel = 0;
+  double previousVal = 0; // Giá trị trước đó
   Timer? _timer;
 
-  void getFuel() async {
+  void getTemp() async {
     const endPoint = ApiEndPoint.engfuelEndPoint;
-    valfllvl = await FirebaseService().fetchData(endPoint: endPoint);
+    double newValue = await FirebaseService().fetchData(endPoint: endPoint);
+
     if (mounted) {
-      setState(() {});
+      if (newValue != previousVal) {
+        setState(() {
+          fuelLevel = newValue;
+          previousVal = newValue;
+          if (fuelLevel < 1000) {
+            NotificationService.showNotification(
+              id: 4,
+              channelKey: 'channel_1',
+              title: 'fuel level'.toUpperCase(),
+              body:
+                  'Mức nhiên liệu còn lại $fuelLevel',
+            );
+          }
+        });
+      }
     }
   }
 
@@ -29,7 +45,7 @@ class _GaugeFuelState extends State<GaugeFuel> {
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) {
-      getFuel();
+      getTemp();
     });
   }
 
@@ -38,6 +54,8 @@ class _GaugeFuelState extends State<GaugeFuel> {
     _timer?.cancel();
     super.dispose();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +91,7 @@ class _GaugeFuelState extends State<GaugeFuel> {
                 ],
                 pointers: <GaugePointer>[
                   NeedlePointer(
-                      value: valfllvl! / 10,
+                      value: fuelLevel / 10,
                       enableAnimation: true,
                       needleEndWidth: 3,
                       // onValueChanged: _onPointerValueChanged,
