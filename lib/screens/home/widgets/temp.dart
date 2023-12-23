@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:datn/gen/assets.gen.dart';
 import 'package:datn/services/api_endpoint.dart';
 import 'package:datn/services/firebase_service.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class GaugeTemp extends StatefulWidget {
 }
 
 class _GaugeTempState extends State<GaugeTemp> {
-  double valengtmp = -44;
+  double valengtmp = 0;
   Timer? _timer;
 
   void getTemp() async {
@@ -39,63 +40,67 @@ class _GaugeTempState extends State<GaugeTemp> {
 
   @override
   Widget build(BuildContext context) {
-    return SfLinearGauge(
-      minimum: -40,
-      maximum: 210,
-      orientation: LinearGaugeOrientation.vertical,
-      majorTickStyle: const LinearTickStyle(
-          length: 10, thickness: 2.5, color: Color.fromARGB(255, 15, 15, 15)),
-      minorTickStyle: const LinearTickStyle(
-          length: 5,
-          thickness: 1.75,
-          color: Color.fromARGB(255, 219, 219, 219)),
-      minorTicksPerInterval: 9,
-      axisLabelStyle: const TextStyle(
-        color: Color.fromARGB(255, 248, 247, 247),
-        fontSize: 10,
-        fontWeight: FontWeight.bold,
-      ),
-      labelOffset: 20,
-      markerPointers: [
-        LinearWidgetPointer(
-          value: valengtmp,
-          position: LinearElementPosition.outside,
-          offset: 20,
-          child: Text("$valengtmp°C",
-              style: const TextStyle(
-                  color: Color.fromARGB(255, 246, 246, 250),
-                  fontSize: 13,
-                  fontWeight: FontWeight.bold)),
-        ),
-        LinearShapePointer(
-          value: valengtmp,
-          color: const Color.fromARGB(255, 8, 8, 8),
-          shapeType: LinearShapePointerType.triangle,
-          position: LinearElementPosition.inside,
-          offset: 8,
-        ),
-      ],
-      ranges: const <LinearGaugeRange>[
-        //First range
-        LinearGaugeRange(
-            startValue: 10, endValue: 60, color: Color.fromARGB(255, 5, 5, 5)),
-        //Second range
-        LinearGaugeRange(
-            startValue: -40,
-            endValue: 10,
-            color: Color.fromARGB(255, 17, 17, 17)),
-        LinearGaugeRange(
-            startValue: 0,
-            endValue: 110,
-            color: Color.fromARGB(255, 14, 13, 13)),
-        LinearGaugeRange(
-            startValue: 140,
-            endValue: 210,
-            color: Color.fromARGB(255, 247, 210, 210)),
-        LinearGaugeRange(
-            startValue: 110,
-            endValue: 140,
-            color: Color.fromARGB(255, 17, 17, 17)),
+    return SfRadialGauge(
+      axes: [
+        RadialAxis(
+          minimum: 0,
+          maximum: 240,
+          labelOffset: 12,
+          axisLineStyle: const AxisLineStyle(
+              thicknessUnit: GaugeSizeUnit.factor, thickness: 0.03),
+          majorTickStyle: const MajorTickStyle(
+              length: 6, thickness: 4, color: Color.fromARGB(255, 15, 15, 15)),
+          minorTickStyle: const MinorTickStyle(
+              length: 3, thickness: 3, color: Color.fromARGB(255, 10, 10, 10)),
+          axisLabelStyle: const GaugeTextStyle(
+              color: Color.fromARGB(255, 14, 13, 13),
+              fontWeight: FontWeight.bold,
+              fontSize: 10),
+          interval: 20,
+          ranges: [
+            GaugeRange(
+              startValue: 0,
+              endValue: 240,
+              sizeUnit: GaugeSizeUnit.factor,
+              startWidth: 0.03,
+              endWidth: 0.03,
+              gradient: const SweepGradient(
+                colors: [
+                  Color.fromARGB(255, 12, 12, 12),
+                  Color.fromARGB(255, 8, 8, 8),
+                  Colors.red
+                ],
+                stops: [0.0, 0.5, 1],
+              ),
+            )
+          ],
+          pointers: [
+            NeedlePointer(
+                value: valengtmp,
+                needleLength: 0.95,
+                enableAnimation: true,
+                animationType: AnimationType.ease,
+                needleStartWidth: 1,
+                needleEndWidth: 3,
+                needleColor: const Color.fromARGB(255, 64, 0, 0),
+                knobStyle: const KnobStyle(
+                    knobRadius: 0.09,
+                    sizeUnit: GaugeSizeUnit.factor,
+                    color: Color.fromARGB(255, 15, 15, 15)))
+          ],
+          annotations: [
+            GaugeAnnotation(
+              verticalAlignment: GaugeAlignment.near,
+              widget: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Image.asset(
+                  Assets.images.engineCoolant.path,
+                  width: 40,
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

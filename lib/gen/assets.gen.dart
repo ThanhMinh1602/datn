@@ -15,8 +15,16 @@ class $AssetsImagesGen {
   /// File path: assets/images/car.png
   AssetGenImage get car => const AssetGenImage('assets/images/car.png');
 
+  /// File path: assets/images/engine_coolant.png
+  AssetGenImage get engineCoolant =>
+      const AssetGenImage('assets/images/engine_coolant.png');
+
+  /// File path: assets/images/gas_station.png
+  AssetGenImage get gasStation =>
+      const AssetGenImage('assets/images/gas_station.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [car];
+  List<AssetGenImage> get values => [car, engineCoolant, gasStation];
 }
 
 class Assets {

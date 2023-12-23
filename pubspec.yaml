@@ -31,19 +31,20 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_local_notifications: ^16.2.0
   flutter_screenutil: ^5.9.0
   google_fonts: ^6.1.0
   http: ^1.1.2
   odometer: ^3.0.0
   slide_digital_clock: ^1.0.3
   speedometer: ^1.1.2
-  syncfusion_flutter_charts: ^23.2.6
-  syncfusion_flutter_gauges: ^23.2.6
+  syncfusion_flutter_charts: ^24.1.41
+  syncfusion_flutter_gauges: ^24.1.41
 
 dev_dependencies:
   build_runner: ^2.4.7
   flutter_gen_runner: ^5.3.2
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
   flutter_test:
     sdk: flutter
 

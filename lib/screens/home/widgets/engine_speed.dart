@@ -41,16 +41,6 @@ class _EngineSpeedState extends State<EngineSpeed> {
     return SfRadialGauge(
       axes: [
         RadialAxis(
-            startAngle: 270,
-            endAngle: 270,
-            minimum: 0,
-            maximum: 80,
-            interval: 10,
-            radiusFactor: 0.4,
-            showAxisLine: false,
-            showLastLabel: false,
-            onLabelCreated: labelCreated),
-        RadialAxis(
           minimum: 0,
           maximum: 10,
           labelOffset: 12,
@@ -84,12 +74,12 @@ class _EngineSpeedState extends State<EngineSpeed> {
           ],
           pointers: [
             NeedlePointer(
-                value: _data! / 1000,
+                value: _data /100,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,
-                needleStartWidth: 1.5,
-                needleEndWidth: 6,
+                needleStartWidth: 1,
+                needleEndWidth: 3,
                 needleColor: const Color.fromARGB(255, 10, 10, 10),
                 knobStyle: const KnobStyle(
                     knobRadius: 0.09,
@@ -112,27 +102,5 @@ class _EngineSpeedState extends State<EngineSpeed> {
         )
       ],
     );
-  }
-
-  void labelCreated(AxisLabelCreatedArgs args) {
-    if (args.text == '0') {
-      args.text = 'N';
-      args.labelStyle = const GaugeTextStyle(
-          color: Colors.red, fontWeight: FontWeight.bold, fontSize: 10);
-    } else if (args.text == '10') {
-      args.text = '';
-    } else if (args.text == '20') {
-      args.text = 'E';
-    } else if (args.text == '30') {
-      args.text = '';
-    } else if (args.text == '40') {
-      args.text = 'S';
-    } else if (args.text == '50') {
-      args.text = '';
-    } else if (args.text == '60') {
-      args.text = 'W';
-    } else if (args.text == '70') {
-      args.text = '';
-    }
   }
 }

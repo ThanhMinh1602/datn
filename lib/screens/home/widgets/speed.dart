@@ -103,8 +103,8 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,
-                needleStartWidth: 1.5,
-                needleEndWidth: 6,
+                needleStartWidth: 1,
+                needleEndWidth: 3,
                 needleColor: const Color.fromARGB(255, 10, 10, 10),
                 knobStyle: const KnobStyle(
                     knobRadius: 0.09,
@@ -150,31 +150,4 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
       args.text = '';
     }
   }
-
-// void notify2() async {
-//   AwesomeNotifications().createNotification(
-//       content: NotificationContent(
-//         id: 2,
-//         channelKey: "basic_channel",
-//         title: "Speed over!!! ${Emojis.symbols_warning}",
-//         body: "Alert Over Speed",
-//         bigPicture: 'asset://assets/speed.png',
-//         displayOnForeground: true,
-//         displayOnBackground: true,
-//         notificationLayout: NotificationLayout.BigPicture,
-//       ),
-//       actionButtons: [
-//         NotificationActionButton(
-//             key: 'DISMISS',
-//             label: 'Dismiss',
-//             actionType: ActionType.DismissAction,
-//             isDangerousOption: true)
-//       ]);
-// }
 }
-//  Text('Tesr',
-//                         style: TextStyle(
-//                             fontSize: 20,
-//                             fontWeight: FontWeight.bold,
-//                             color: Color.fromARGB(255, 2, 6, 68))),
-//                     SizedBox(height: 5),
