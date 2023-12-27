@@ -14,7 +14,7 @@ class GaugeFuel extends StatefulWidget {
 }
 
 class _GaugeFuelState extends State<GaugeFuel> {
-   double fuelLevel = 0;
+  double fuelLevel = 0;
   double previousVal = 0; // Giá trị trước đó
   Timer? _timer;
 
@@ -32,8 +32,6 @@ class _GaugeFuelState extends State<GaugeFuel> {
               id: 4,
               channelKey: 'channel_1',
               title: 'fuel level'.toUpperCase(),
-              body:
-                  'Mức nhiên liệu còn lại $fuelLevel',
             );
           }
         });
@@ -54,8 +52,6 @@ class _GaugeFuelState extends State<GaugeFuel> {
     _timer?.cancel();
     super.dispose();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {

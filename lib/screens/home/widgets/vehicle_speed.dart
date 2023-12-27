@@ -31,8 +31,6 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
               id: 5,
               channelKey: 'channel_1',
               title: 'vehicle speed'.toUpperCase(),
-              body:
-                  'Vận tốc $vehicleSpeed',
             );
           }
         });

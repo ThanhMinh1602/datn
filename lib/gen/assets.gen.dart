@@ -15,9 +15,21 @@ class $AssetsImagesGen {
   /// File path: assets/images/car.png
   AssetGenImage get car => const AssetGenImage('assets/images/car.png');
 
+  /// File path: assets/images/distance.jpg
+  AssetGenImage get distance =>
+      const AssetGenImage('assets/images/distance.jpg');
+
   /// File path: assets/images/engine_coolant.png
   AssetGenImage get engineCoolant =>
       const AssetGenImage('assets/images/engine_coolant.png');
+
+  /// File path: assets/images/engine_speed_warning.jpg
+  AssetGenImage get engineSpeedWarning =>
+      const AssetGenImage('assets/images/engine_speed_warning.jpg');
+
+  /// File path: assets/images/fuel_level.jpg
+  AssetGenImage get fuelLevel =>
+      const AssetGenImage('assets/images/fuel_level.jpg');
 
   /// File path: assets/images/gas_station.png
   AssetGenImage get gasStation =>
@@ -31,9 +43,22 @@ class $AssetsImagesGen {
   AssetGenImage get logoLogin =>
       const AssetGenImage('assets/images/logo_login.png');
 
+  /// File path: assets/images/tempurature_warning.jpg
+  AssetGenImage get tempuratureWarning =>
+      const AssetGenImage('assets/images/tempurature_warning.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [car, engineCoolant, gasStation, logoApp, logoLogin];
+  List<AssetGenImage> get values => [
+        car,
+        distance,
+        engineCoolant,
+        engineSpeedWarning,
+        fuelLevel,
+        gasStation,
+        logoApp,
+        logoLogin,
+        tempuratureWarning
+      ];
 }
 
 class Assets {

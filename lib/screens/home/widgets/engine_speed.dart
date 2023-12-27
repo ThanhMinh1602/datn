@@ -31,8 +31,6 @@ class _EngineSpeedState extends State<EngineSpeed> {
               id: 2,
               channelKey: 'channel_1',
               title: 'engine speed'.toUpperCase(),
-              body:
-                  'Tốc độ đông cơ $engineSpeed',
             );
           }
         });
@@ -53,8 +51,6 @@ class _EngineSpeedState extends State<EngineSpeed> {
     _timer?.cancel();
     super.dispose();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +90,7 @@ class _EngineSpeedState extends State<EngineSpeed> {
           ],
           pointers: [
             NeedlePointer(
-                value: engineSpeed /100,
+                value: engineSpeed / 100,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,

@@ -32,8 +32,6 @@ class _GaugeTempState extends State<GaugeTemp> {
               id: 3,
               channelKey: 'channel_1',
               title: 'engine temperature'.toUpperCase(),
-              body:
-                  'Nhiệt độ $engineTemperature, vượt quá mức cho phép ${engineTemperature - 100}',
             );
           }
         });
@@ -54,8 +52,6 @@ class _GaugeTempState extends State<GaugeTemp> {
     _timer?.cancel();
     super.dispose();
   }
-
-  
 
   @override
   Widget build(BuildContext context) {

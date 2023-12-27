@@ -1,7 +1,5 @@
 import 'dart:typed_data';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:datn/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -14,7 +12,6 @@ class NotificationService {
       print('Notification permission denied');
     } else if (status.isPermanentlyDenied) {
       print('Notification permission permanently denied');
-      // Đưa người dùng đến cài đặt để bật quyền thông báo (nếu cần)
       openAppSettings();
     }
   }
@@ -48,8 +45,16 @@ class NotificationService {
           title: title ?? '',
           body: body ?? '',
           customSound: 'resource://raw/joyous_chime_notification',
-          bigPicture:
-              'https://safetynetworkweb.s3.amazonaws.com/uploads/2021/02/G9-9A-scaled-1.jpg',
+          largeIcon: 'https://mindmycar.com/img/mind-my-car-logo.png',
+          bigPicture: id == 1
+              ? 'https://www.engineeringchoice.com/ezoimgfmt/i0.wp.com/www.engineeringchoice.com/wp-content/uploads/2023/04/Distance-Warning-light.webp?resize=1024%2C576&ssl=1&ezimgfmt=ng:webp/ngcb190'
+              : id == 2
+                  ? 'https://www.engineeringchoice.com/ezoimgfmt/i0.wp.com/www.engineeringchoice.com/wp-content/uploads/2023/08/Check-Engine-Light.webp?resize=1024%2C576&ssl=1&ezimgfmt=ng:webp/ngcb190'
+                  : id == 3
+                      ? 'https://www.engineeringchoice.com/ezoimgfmt/i0.wp.com/www.engineeringchoice.com/wp-content/uploads/2023/04/Engine-Temperature-Warning-Light.webp?resize=1024%2C576&ssl=1&ezimgfmt=ng:webp/ngcb190'
+                      : id == 4
+                          ? 'https://www.engineeringchoice.com/ezoimgfmt/i0.wp.com/www.engineeringchoice.com/wp-content/uploads/2023/04/Low-Fuel-Indicator-Light.webp?resize=1024%2C576&ssl=1&ezimgfmt=ng:webp/ngcb190'
+                          : 'https://www.volvocars.com/images/support/img0e2b09346776ed66c0a8015206633715_1_--_--_VOICEpnghigh.png',
           notificationLayout: NotificationLayout.BigPicture),
     );
   }

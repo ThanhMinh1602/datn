@@ -5,7 +5,6 @@ import 'package:datn/services/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:odometer/odometer.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class OdoWidget extends StatefulWidget {
   const OdoWidget({super.key});
@@ -33,8 +32,6 @@ class _OdoWidgetState extends State<OdoWidget> {
               id: 1,
               channelKey: 'channel_1',
               title: 'distance'.toUpperCase(),
-              body:
-                  'Số km đã đi $distance',
             );
           }
         });
@@ -76,7 +73,6 @@ class _OdoWidgetState extends State<OdoWidget> {
     );
   }
 }
-
 
 // import 'dart:async';
 
