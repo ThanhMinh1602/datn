@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:datn/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -29,15 +30,12 @@ class NotificationService {
             channelDescription: 'Notification channel 1',
             defaultColor: const Color(0xFF9D50DD),
             ledColor: Colors.white,
-            soundSource: 'resource://drawable/joyous_chime_notification',
+            soundSource: 'resource://raw/joyous_chime_notification',
             vibrationPattern: Int64List.fromList(
               [
                 500,
-                1000,
                 500,
-                2000,
                 500,
-                3000,
               ],
             )),
       ],
@@ -49,7 +47,10 @@ class NotificationService {
           channelKey: channelKey ?? '',
           title: title ?? '',
           body: body ?? '',
-          customSound: 'resource://drawable/joyous_chime_notification'),
+          customSound: 'resource://raw/joyous_chime_notification',
+          bigPicture:
+              'https://safetynetworkweb.s3.amazonaws.com/uploads/2021/02/G9-9A-scaled-1.jpg',
+          notificationLayout: NotificationLayout.BigPicture),
     );
   }
 }
