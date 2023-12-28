@@ -2,7 +2,7 @@ import 'form_validator.dart';
 
 class Validator {
   static final requiredValidator = MultiValidator([
-    RequiredValidator(errorText: 'This field is required'),
+    RequiredValidator(errorText: 'Vui lòng không bỏ trống'),
   ]);
 
   static final passwordValidator = MultiValidator([

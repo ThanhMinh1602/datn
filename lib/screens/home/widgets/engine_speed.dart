@@ -26,7 +26,7 @@ class _EngineSpeedState extends State<EngineSpeed> {
         setState(() {
           engineSpeed = newValue;
           previousVal = newValue;
-          if (engineSpeed > 100) {
+          if (engineSpeed > 5000) {
             NotificationService.showNotification(
               id: 2,
               channelKey: 'channel_1',
@@ -37,7 +37,6 @@ class _EngineSpeedState extends State<EngineSpeed> {
       }
     }
   }
-
   @override
   void initState() {
     super.initState();

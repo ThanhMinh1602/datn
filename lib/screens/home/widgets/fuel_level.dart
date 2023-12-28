@@ -15,7 +15,7 @@ class GaugeFuel extends StatefulWidget {
 
 class _GaugeFuelState extends State<GaugeFuel> {
   double fuelLevel = 0;
-  double previousVal = 0; // Giá trị trước đó
+  double previousVal = 0;
   Timer? _timer;
 
   void getTemp() async {
@@ -27,7 +27,7 @@ class _GaugeFuelState extends State<GaugeFuel> {
         setState(() {
           fuelLevel = newValue;
           previousVal = newValue;
-          if (fuelLevel < 1000) {
+          if (fuelLevel < 20) {
             NotificationService.showNotification(
               id: 4,
               channelKey: 'channel_1',

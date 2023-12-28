@@ -27,7 +27,7 @@ class _GaugeTempState extends State<GaugeTemp> {
         setState(() {
           engineTemperature = newValue;
           previousVal = newValue;
-          if (engineTemperature > 100) {
+          if (engineTemperature > 70) {
             NotificationService.showNotification(
               id: 3,
               channelKey: 'channel_1',

@@ -5,6 +5,7 @@ import 'package:datn/gen/assets.gen.dart';
 import 'package:datn/screens/home/home_screen.dart';
 import 'package:datn/utils/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+
   Future<void> _submitLogin() async {
     if (formKey.currentState!.validate() == false) {
       return;
@@ -24,12 +26,20 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (_emailController.text.trim() == 'DATN' &&
         _passController.text.trim() == '123456') {
+      await _setLoginStatus(true);
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
-          (route) => false);
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+        (route) => false,
+      );
     }
+  }
+
+  Future<void> _setLoginStatus(bool isLoggedIn) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', isLoggedIn);
   }
 
   @override

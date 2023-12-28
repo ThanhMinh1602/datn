@@ -26,7 +26,7 @@ class _VehicleSpeedState extends State<VehicleSpeed> {
         setState(() {
           vehicleSpeed = newValue;
           previousVal = newValue;
-          if (vehicleSpeed > 100) {
+          if (vehicleSpeed > 90) {
             NotificationService.showNotification(
               id: 5,
               channelKey: 'channel_1',

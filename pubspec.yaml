@@ -42,6 +42,7 @@ dependencies:
   odometer: ^3.0.0
   palette_generator: ^0.3.3+3
   permission_handler: ^11.1.0
+  shared_preferences: ^2.2.2
   slide_digital_clock: ^1.0.3
   speedometer: ^1.1.2
   syncfusion_flutter_charts: ^24.1.41
