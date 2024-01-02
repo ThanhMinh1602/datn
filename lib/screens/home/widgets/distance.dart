@@ -23,19 +23,21 @@ class _OdoWidgetState extends State<OdoWidget> {
     const endPoint = ApiEndPoint.distanceEndPoint;
     int newValue = await FirebaseService().fetchDataInt(endPoint: endPoint);
 
-    if (mounted && newValue > previousVal + 1000) {
-      setState(() {
-        distance = newValue;
-        if (distance > oldDisrance + 1000) {
-          oldDisrance += 1000;
+    if (mounted) {
+      if (newValue != previousVal) {
+        setState(() {
+          distance = newValue;
           previousVal = newValue;
-          NotificationService.showNotification(
-            id: 1,
-            channelKey: 'channel_1',
-            title: 'distance'.toUpperCase(),
-          );
-        }
-      });
+          if (distance - oldDisrance >= 1000) {
+            NotificationService.showNotification(
+              id: 1,
+              channelKey: 'channel_1',
+              title: 'distance'.toUpperCase(),
+            );
+            oldDisrance = distance;
+          }
+        });
+      }
     }
   }
 

@@ -87,7 +87,7 @@ class _GaugeFuelState extends State<GaugeFuel> {
                 ],
                 pointers: <GaugePointer>[
                   NeedlePointer(
-                      value: fuelLevel / 10,
+                      value: fuelLevel,
                       enableAnimation: true,
                       needleEndWidth: 3,
                       // onValueChanged: _onPointerValueChanged,

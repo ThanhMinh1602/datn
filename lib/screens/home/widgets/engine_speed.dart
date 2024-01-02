@@ -89,7 +89,7 @@ class _EngineSpeedState extends State<EngineSpeed> {
           ],
           pointers: [
             NeedlePointer(
-                value: engineSpeed / 100,
+                value: engineSpeed / 1000,
                 needleLength: 0.95,
                 enableAnimation: true,
                 animationType: AnimationType.ease,

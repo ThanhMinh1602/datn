@@ -34,6 +34,24 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         (route) => false,
       );
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Login failed'),
+            content: const Text('Please check your username and password'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              )
+            ],
+          );
+        },
+      );
     }
   }
 

@@ -19,7 +19,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     checkLoginStatus();
   }
-
   Future<void> checkLoginStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;

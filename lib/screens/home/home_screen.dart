@@ -16,14 +16,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     NotificationService.requestNotificationPermission();
-    // TODO: implement initState
     super.initState();
   }
 
   Future<void> _logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(
-        'isLoggedIn', false); // Đặt trạng thái đăng nhập về false
+    await prefs.setBool('isLoggedIn', false);
     // ignore: use_build_context_synchronously
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const LoginScreen()),
@@ -150,10 +148,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Positioned(
-            top: 30,
+            top: 50,
             right: 20,
             child: GestureDetector(
-                onTap: () => _logout,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Logout'),
+                        content: const Text('Are you sure you want to logout?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              _logout(context);
+                            },
+                            child: const Text('OK'),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
                 child: Container(
                     alignment: Alignment.center,
                     width: 40.0,
